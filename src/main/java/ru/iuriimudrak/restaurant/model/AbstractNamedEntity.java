@@ -1,5 +1,6 @@
 package ru.iuriimudrak.restaurant.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -12,13 +13,14 @@ import javax.validation.constraints.Size;
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
 @Data
-@NoArgsConstructor
-public class AbstractNamedEntity extends AbstractBaseEntity {
+// https://stackoverflow.com/a/61980073
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
 	@NotBlank
 	@Size(min = 2, max = 100)
 	@Column(name = "name", nullable = false)
-	String name;
+	protected String name;
 
 	protected AbstractNamedEntity(Integer id, String name) {
 		super(id);
