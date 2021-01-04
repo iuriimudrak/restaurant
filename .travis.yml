@@ -1,0 +1,7 @@
+# https://www.travis-ci.com/getting_started
+language: java
+jdk: openjdk15
+
+branches:
+  only:
+    - main
