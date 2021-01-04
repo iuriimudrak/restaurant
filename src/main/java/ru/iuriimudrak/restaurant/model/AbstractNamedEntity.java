@@ -10,9 +10,9 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@EqualsAndHashCode(callSuper = true)
-@MappedSuperclass
 @Data
+@MappedSuperclass
+@EqualsAndHashCode(callSuper = true)
 // https://stackoverflow.com/a/61980073
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
