@@ -17,7 +17,8 @@ VALUES ('USER', 100000),
 INSERT INTO restaurants (name)
 VALUES ('Hide'),
        ('Palkin'),
-       ('Moskovskiy');
+       ('Moskovskiy'),
+       ('KFC');
 
 INSERT INTO votes (user_id, restaurant_id, localdate)
 VALUES (100000, 100002, '2020-12-10'),
