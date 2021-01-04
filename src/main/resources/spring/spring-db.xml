@@ -31,7 +31,6 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="ru.iuriimudrak.**.model">
-        <!--p:persistenceUnitName="persistenceUnit">-->
 
         <property name="jpaPropertyMap">
             <map>
@@ -48,10 +47,6 @@
                        value="org.ehcache.jsr107.EhcacheCachingProvider"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_QUERY_CACHE}" value="false"/> <!--default-->
-
-                <entry key="javax.persistence.validation.group.pre-persist"
-                       value="ru.iuriimudrak.restaurant.View$Persist"/>
-                <entry key="javax.persistence.validation.group.pre-update" value="ru.iuriimudrak.restaurant.View$Persist"/>
             </map>
         </property>
 

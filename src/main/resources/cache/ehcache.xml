@@ -2,19 +2,20 @@
         xmlns='http://www.ehcache.org/v3'
         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
 
-    <cache-template name="expiryCache">
+    <cache-template name="userCache">
         <expiry>
-            <ttl unit="minutes">5</ttl>
+            <ttl unit="minutes">30</ttl>
         </expiry>
         <heap unit="entries">5000</heap>
     </cache-template>
 
-    <cache-template name="singleNonExpiryCache">
+    <cache-template name="dailyExpiringCache">
         <expiry>
-            <none/>
+            <ttl unit="days">1</ttl>
         </expiry>
-        <heap>1</heap>
+        <heap>5</heap>
     </cache-template>
 
-    <cache alias="users" uses-template="singleNonExpiryCache"/>
+    <cache alias="users" uses-template="userCache"/>
+    <cache alias="restaurantTos" uses-template="dailyExpiringCache"/>
 </config>

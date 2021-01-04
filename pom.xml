@@ -6,6 +6,7 @@
 
     <groupId>ru.iuriimudrak</groupId>
     <artifactId>restaurant</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <name>Restaurant voting REST API</name>
@@ -38,7 +39,7 @@
         <hamcrest.version>2.2</hamcrest.version>
 
         <!-- Hibernate -->
-        <hibernate.version>5.4.22.Final</hibernate.version>
+        <hibernate.version>5.4.25.Final</hibernate.version>
         <hibernate-validator.version>6.1.6.Final</hibernate-validator.version>
         <javax-el.version>3.0.1-b12</javax-el.version>
 
@@ -78,6 +79,11 @@
                 <configuration>
                     <container>
                         <containerId>tomcat9x</containerId>
+                        <artifactInstaller>
+                            <groupId>org.apache.tomcat</groupId>
+                            <artifactId>tomcat</artifactId>
+                            <version>${tomcat.version}</version>
+                        </artifactInstaller>
                         <systemProperties>
                             <file.encoding>UTF-8</file.encoding>
                             <spring.profiles.active>tomcat</spring.profiles.active>
@@ -102,6 +108,19 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.sql</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
