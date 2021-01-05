@@ -21,22 +21,22 @@ public class Vote extends AbstractBaseEntity {
 
 	public static final LocalTime VOTE_DDL = LocalTime.of(11, 0);
 
-	@Column(name = "localdate", nullable = false)
 	@NotNull
+	@Column(name = "localdate", nullable = false)
 	private LocalDate localDate = LocalDate.now();
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@NotNull
 	@JsonBackReference("userVotes")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "restaurant_id", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonBackReference("restaurantVotes")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "restaurant_id", nullable = false)
 	private Restaurant restaurant;
 
 	public Vote(LocalDate localDate, User user, Restaurant restaurant) {
@@ -48,5 +48,13 @@ public class Vote extends AbstractBaseEntity {
 		this.localDate = localDate;
 		this.user = user;
 		this.restaurant = restaurant;
+	}
+
+	@Override
+	public String toString() {
+		return "Vote{" +
+						"id=" + id +
+						", date=" + localDate +
+						'}';
 	}
 }
