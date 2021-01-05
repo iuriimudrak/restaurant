@@ -42,7 +42,8 @@ public class User extends AbstractNamedEntity {
 
 	@NotNull
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	@Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()")
+	@Column(name = "registered", nullable = false,
+					columnDefinition = "timestamp default now()")
 	private Date registered = new Date();
 
 
@@ -52,11 +53,11 @@ public class User extends AbstractNamedEntity {
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	@CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-					uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_unique_idx")})
+									 uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_unique_idx")})
 	private Set<Role> roles;
 
-	@JsonManagedReference
 	@OrderBy("localDate DESC")
+	@JsonManagedReference(value = "userVotes")
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Vote> votes;
 
@@ -78,6 +79,7 @@ public class User extends AbstractNamedEntity {
 	}
 
 	public void setRoles(Collection<Role> roles) {
-		this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
+		this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class)
+						: EnumSet.copyOf(roles);
 	}
 }

@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
+import org.springframework.util.Assert;
 import ru.iuriimudrak.restaurant.HasId;
 
 import javax.persistence.*;
@@ -24,6 +25,15 @@ public abstract class AbstractBaseEntity implements HasId {
 
 	protected AbstractBaseEntity(Integer id) {
 		this.id = id;
+	}
+
+	public int id() {
+		Assert.notNull(id, "Entity must has id");
+		return id;
+	}
+
+	public boolean isNew() {
+		return this.id == null;
 	}
 
 	@Override
