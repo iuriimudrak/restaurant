@@ -30,12 +30,12 @@ public class UserTestData {
 
 	public static User getUpdatedUser() {
 		User updated = new User(USER);
-		updated.setName("UpdatedName");
+		updated.setName("updName");
 		return updated;
 	}
 
-	public static String jsonWithPassword(User user, String pass) {
-		return JsonUtil.writeAdditionProps(user, "password", pass);
+	public static String jsonWithPassword(User user, String password) {
+		return JsonUtil.writeAdditionProps(user, "password", password);
 	}
 
 }
