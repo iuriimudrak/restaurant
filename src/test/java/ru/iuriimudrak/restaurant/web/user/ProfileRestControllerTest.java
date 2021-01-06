@@ -18,7 +18,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.iuriimudrak.restaurant.TestUtil.readFromJson;
 import static ru.iuriimudrak.restaurant.TestUtil.userHttpBasic;
 import static ru.iuriimudrak.restaurant.UserTestData.*;
+import static ru.iuriimudrak.restaurant.VoteTestData.VOTE_1;
+import static ru.iuriimudrak.restaurant.VoteTestData.VOTE_MATCHER;
 import static ru.iuriimudrak.restaurant.web.user.ProfileRestController.REST_URL;
+import static ru.iuriimudrak.restaurant.web.user.ProfileRestController.VOTE_URL;
 
 class ProfileRestControllerTest extends AbstractControllerTest {
 
@@ -80,4 +83,41 @@ class ProfileRestControllerTest extends AbstractControllerTest {
 		USER_MATCHER.assertMatch(userService.get(USER_ID), UserUtil.updateFromTo(new User(USER), updatedTo));
 	}
 
+	@Test
+	void getWithVotes() throws Exception {
+		perform(MockMvcRequestBuilders.get(REST_URL + "/with-votes")
+																	.with(userHttpBasic(USER)))
+						.andExpect(status().isOk())
+						.andDo(print())
+						.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+						.andExpect(USER_MATCHER.contentJson(USER));
+	}
+
+	@Test
+	void getTodayVote() throws Exception {
+		perform(MockMvcRequestBuilders.get(REST_URL + VOTE_URL + "/today")
+																	.with(userHttpBasic(ADMIN)))
+						.andExpect(status().isOk())
+						.andDo(print())
+						.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+	}
+
+	@Test
+	void getAllVotes() throws Exception {
+		perform(MockMvcRequestBuilders.get(REST_URL + VOTE_URL)
+																	.with(userHttpBasic(USER)))
+						.andExpect(status().isOk())
+						.andDo(print())
+						.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+	}
+
+	@Test
+	void getVoteByDate() throws Exception {
+		perform(MockMvcRequestBuilders.get(REST_URL + VOTE_URL + "/by?date=" + VOTE_1.getLocalDate())
+																	.with(userHttpBasic(USER)))
+						.andExpect(status().isOk())
+						.andDo(print())
+						.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+						.andExpect(VOTE_MATCHER.contentJson(VOTE_1));
+	}
 }

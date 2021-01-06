@@ -59,7 +59,6 @@ public class VoteService {
 				log.debug("vote have been changed: from user id= {} to restaurant id= {}", userId, restaurantId);
 				return vote;
 			}
-
 			log.debug("vote have NOT been changed: from user id= {} to restaurant id= {}", userId, restaurantId);
 			return vote;
 		} else {
