@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "localdate"}, name = "vote_unique_user_date_idx")})
+@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "localdate"}, name = "vote_unique_user_date_idx")})
 public class Vote extends AbstractBaseEntity {
 
 	public static final LocalTime VOTE_DDL = LocalTime.of(11, 0);

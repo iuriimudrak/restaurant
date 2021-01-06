@@ -52,7 +52,7 @@ public class User extends AbstractNamedEntity {
 	@Enumerated(EnumType.STRING)
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-	@CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+	@CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
 									 uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_unique_idx")})
 	private Set<Role> roles;
 
