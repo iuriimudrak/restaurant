@@ -8,9 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.iuriimudrak.restaurant.RestaurantTestData.RESTAURANT_1_ID;
 import static ru.iuriimudrak.restaurant.TestUtil.userHttpBasic;
 import static ru.iuriimudrak.restaurant.UserTestData.USER;
-import static ru.iuriimudrak.restaurant.web.VoteController.REST_URL;
+import static ru.iuriimudrak.restaurant.web.VoteRestController.REST_URL;
 
-class VoteControllerTest extends AbstractControllerTest {
+class VoteRestControllerTest extends AbstractControllerTest {
 
 	@Test
 	void setVote() throws Exception {

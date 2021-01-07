@@ -37,7 +37,7 @@ public class VoteService {
 	private Clock clock = Clock.systemDefaultZone();
 
 	@Transactional
-	@CacheEvict(value = "restaurantTos", allEntries = true)
+	@CacheEvict(value = "restaurants", allEntries = true)
 	public Vote setVote(int userId, int restaurantId) {
 
 		LocalDateTime votingLocalDateTime = LocalDateTime.now(clock);
