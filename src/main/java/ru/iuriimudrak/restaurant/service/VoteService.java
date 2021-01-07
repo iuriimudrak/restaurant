@@ -27,8 +27,7 @@ import static ru.iuriimudrak.restaurant.util.ValidationUtil.checkNotFoundWithId;
 @RequiredArgsConstructor
 public class VoteService {
 
-	protected final Logger log = LoggerFactory.getLogger(getClass());
-
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final VoteRepository voteRepository;
 	private final UserRepository userRepository;
 	private final RestaurantRepository restaurantRepository;
