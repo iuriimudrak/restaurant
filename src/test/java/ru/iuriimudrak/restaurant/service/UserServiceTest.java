@@ -10,7 +10,7 @@ import ru.iuriimudrak.restaurant.util.exception.NotFoundException;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.iuriimudrak.restaurant.UserTestData.*;
 
 class UserServiceTest extends AbstractServiceTest {
@@ -54,6 +54,12 @@ class UserServiceTest extends AbstractServiceTest {
 	@Test
 	void getNotFound() {
 		assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND));
+	}
+
+	@Test
+	void getWithVotes() {
+		User user = service.getWithVotes(USER_ID);
+		USER_MATCHER.assertMatch(user, USER);
 	}
 
 	@Test

@@ -1,6 +1,6 @@
 package ru.iuriimudrak.restaurant.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -20,23 +20,18 @@ import ru.iuriimudrak.restaurant.util.UserUtil;
 
 import java.util.List;
 
-import static ru.iuriimudrak.restaurant.util.UserUtil.findById;
+import static ru.iuriimudrak.restaurant.util.RepositoryUtil.findById;
 import static ru.iuriimudrak.restaurant.util.UserUtil.prepareToSave;
 import static ru.iuriimudrak.restaurant.util.ValidationUtil.checkNotFound;
 import static ru.iuriimudrak.restaurant.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("userService")
+@RequiredArgsConstructor
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
 
 	private final UserRepository repository;
 	private final PasswordEncoder passwordEncoder;
-
-	@Autowired
-	public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
-		this.repository = repository;
-		this.passwordEncoder = passwordEncoder;
-	}
 
 	@CacheEvict(value = "users", allEntries = true)
 	public User create(User user) {
