@@ -17,13 +17,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(ProfileRestController.REST_URL)
+@RequestMapping(value = ProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProfileRestController extends AbstractUserController {
 
 	public static final String REST_URL = "/profile";
 	public static final String VOTE_URL = "/votes";
 
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping
 	// https://docs.spring.io/spring-security/site/docs/4.2.x/reference/html/mvc.html
 	public User get(@AuthenticationPrincipal AuthorizedUser authUser) {
 		return super.get(authUser.getId());
