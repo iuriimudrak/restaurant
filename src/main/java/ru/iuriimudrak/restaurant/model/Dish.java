@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -22,20 +22,21 @@ import java.time.LocalDate;
 public class Dish extends AbstractNamedEntity {
 
 //	https://stackoverflow.com/a/8148773
-	@Column(name = "price")
+
 	@NotNull
-	@Range(min = 1, max = 100000)
+	@Positive
+	@Column(name = "price")
 	private BigDecimal price;
 
-	@Column(name = "localdate", nullable = false)
 	@NotNull
+	@Column(name = "localdate", nullable = false)
 	private LocalDate localDate = LocalDate.now();
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "restaurant_id", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonBackReference(value = "restaurantDishes")
+	@JoinColumn(name = "restaurant_id", nullable = false)
 	private Restaurant restaurant;
 
 	public Dish(Integer id, LocalDate localDate, String name, BigDecimal price, Restaurant restaurant) {
