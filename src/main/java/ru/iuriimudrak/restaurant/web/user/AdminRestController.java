@@ -69,11 +69,6 @@ public class AdminRestController extends AbstractUserController {
 		super.delete(id);
 	}
 
-	@GetMapping("/{id}" + VOTE_URL + "/today")
-	public Vote getTodayVote(@PathVariable int id) {
-		return super.getTodayVote(id);
-	}
-
 	@GetMapping("/{id}" + VOTE_URL)
 	public List<Vote> getAllVotes(@PathVariable int id) {
 		return super.getAllVotes(id);

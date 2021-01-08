@@ -78,10 +78,6 @@ public abstract class AbstractUserController {
 		return userService.getWithVotes(id);
 	}
 
-	public Vote getTodayVote(int id) {
-		return getVoteByDate(id, LocalDate.now());
-	}
-
 	public Vote getVoteByDate(int id, LocalDate date) {
 		log.info("getVoteByDate for {} by {}", id, date);
 		return voteService.getByUserIdAndLocalDate(id, date);

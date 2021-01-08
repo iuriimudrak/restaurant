@@ -50,11 +50,6 @@ public class ProfileRestController extends AbstractUserController {
 		super.update(userTo, authUser.getId());
 	}
 
-	@GetMapping(VOTE_URL + "/today")
-	public Vote getTodayVote(@AuthenticationPrincipal AuthorizedUser authUser) {
-		return super.getTodayVote(authUser.getId());
-	}
-
 	@GetMapping(VOTE_URL)
 	public List<Vote> getAllVotes(@AuthenticationPrincipal AuthorizedUser authUser) {
 		return super.getAllVotes(authUser.getId());
