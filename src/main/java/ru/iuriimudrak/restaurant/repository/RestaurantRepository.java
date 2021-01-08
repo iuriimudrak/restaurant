@@ -21,9 +21,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	@Query("DELETE FROM Restaurant r WHERE r.id=:id")
 	int delete(@Param("id") int id);
 
-//	    https://stackoverflow.com/a/46013654/548473
-	@EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.FETCH)
-	@Query("SELECT r FROM Restaurant r LEFT OUTER JOIN Dish d ON d.restaurant.id=r.id " +
+// https://stackoverflow.com/a/38422635
+	@EntityGraph(attributePaths = {"dishes"})
+	@Query("SELECT r FROM Restaurant r JOIN r.dishes d " +
 					"WHERE d.localDate=:date")
 	List<Restaurant> getAllByDate(@Param("date") LocalDate date);
 }

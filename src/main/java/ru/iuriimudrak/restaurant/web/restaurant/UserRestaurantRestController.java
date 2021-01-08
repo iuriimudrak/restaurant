@@ -24,6 +24,12 @@ public class UserRestaurantRestController {
 	private final RestaurantService restaurantService;
 	private final DishService dishService;
 
+	@GetMapping
+	public List<Restaurant> getAll() {
+		log.info("get restaurants list by today");
+		return restaurantService.getAllByDate(LocalDate.now());
+	}
+
 	@GetMapping("/by")
 	public List<Restaurant> getAllByDate(@RequestParam LocalDate date) {
 		log.info("get restaurants by date: {}", date);
