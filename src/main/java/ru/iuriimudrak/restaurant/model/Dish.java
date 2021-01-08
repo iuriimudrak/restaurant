@@ -46,7 +46,21 @@ public class Dish extends AbstractNamedEntity {
 		this.restaurant = restaurant;
 	}
 
+	public Dish(Integer id, String name, BigDecimal price, Restaurant restaurant) {
+		this(id, LocalDate.now(), name, price, restaurant);
+	}
+
 	public Dish(Dish dish) {
 		this(dish.getId(), dish.getLocalDate(), dish.getName(), dish.getPrice(), dish.getRestaurant());
+	}
+
+	@Override
+	public String toString() {
+		return "Dish{" +
+						"id=" + id +
+						", name='" + name +
+						", price=" + price +
+						", date=" + localDate +
+						'}';
 	}
 }

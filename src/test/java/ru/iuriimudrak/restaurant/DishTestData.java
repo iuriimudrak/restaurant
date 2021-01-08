@@ -22,7 +22,7 @@ public class DishTestData {
 	public static final Dish DISH_3 = new Dish(DISH_3_ID, DISH_TEST_DATE, "Cheesecake", new BigDecimal(350), RESTAURANT_1);
 
 	public static Dish getNewDish() {
-		return new Dish(null, LocalDate.now(), "New", new BigDecimal(1000), RESTAURANT_1);
+		return new Dish(null, "New", new BigDecimal(1000), RESTAURANT_1);
 	}
 
 	public static Dish getUpdatedDish() {
