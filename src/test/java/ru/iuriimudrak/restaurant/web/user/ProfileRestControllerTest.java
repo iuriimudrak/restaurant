@@ -94,15 +94,6 @@ class ProfileRestControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
-	void getTodayVote() throws Exception {
-		perform(MockMvcRequestBuilders.get(REST_URL + VOTE_URL + "/today")
-																	.with(userHttpBasic(ADMIN)))
-						.andExpect(status().isOk())
-						.andDo(print())
-						.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-	}
-
-	@Test
 	void getAllVotes() throws Exception {
 		perform(MockMvcRequestBuilders.get(REST_URL + VOTE_URL)
 																	.with(userHttpBasic(USER)))

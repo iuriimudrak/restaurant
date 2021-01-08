@@ -1,13 +1,11 @@
 package ru.iuriimudrak.restaurant.util;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import ru.iuriimudrak.restaurant.HasId;
 import ru.iuriimudrak.restaurant.util.exception.NotFoundException;
 
-import javax.validation.*;
-import java.util.Set;
-import java.util.stream.Collectors;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 public class ValidationUtil {
 	private static final Validator validator;
@@ -20,13 +18,6 @@ public class ValidationUtil {
 	}
 
 	private ValidationUtil() {
-	}
-
-	public static <T> void validate(T bean) {
-		Set<ConstraintViolation<T>> violations = validator.validate(bean);
-		if (!violations.isEmpty()) {
-			throw new ConstraintViolationException(violations);
-		}
 	}
 
 	public static <T> T checkNotFoundWithId(T object, int id) {
@@ -73,13 +64,5 @@ public class ValidationUtil {
 			result = cause;
 		}
 		return result;
-	}
-
-	public static ResponseEntity<String> getErrorResponse(BindingResult result) {
-		return ResponseEntity.unprocessableEntity().body(
-						result.getFieldErrors().stream()
-									.map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
-									.collect(Collectors.joining("<br>"))
-		);
 	}
 }
